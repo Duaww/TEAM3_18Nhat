@@ -6,6 +6,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 
 public class DecryptionWindow {
@@ -72,7 +73,12 @@ public class DecryptionWindow {
 						try 
 						{
 							String ques = Text1.getText();
-        					String[] word = ques.split("\\s");
+							if(ques.equals("") == true)
+							{
+								JOptionPane.showMessageDialog(null, "Input is empty");
+								return;
+							}
+        					String[] word = functionCongCu.catChuoi(ques);
         					String ans = "";
         					for (String st : word) 
         					{
@@ -101,53 +107,21 @@ public class DecryptionWindow {
             							}
             						}
             					}
-            					int converToInt = Integer.parseInt(add);
-            					char convertToChar = 0;
-            					try {
-            						// character must begin to 33
-            							if(converToInt < 33)
-            							{
-            								throw new Exception("-Can't decrypt character!! : "+converToInt+"\n-The ascii code of "
-            										+ "the character must begin from 33");
-            							}
-            							else
-            							{
-            								convertToChar = (char)converToInt;
-            							}
-            					
-            					} catch (Exception e1) {
-            						// TODO: handle exception
-            						Text2.setText(e1.getMessage());
+
+            					char kiTuDau = functionCongCu.convertToChar(add);
+            					if(kiTuDau == 0)
+            					{
             						return;
             					}
-            					
-            					res = res + convertToChar; 
-            					for(int i= index+1;i<st.length();i++)
-            					{
-                					if(i==index+1)
-                					{
-                    					res = res + st.charAt(st.length()-1);
-                					}
-                					else if(i== st.length()-1)
-                					{
-                    					res = res + st.charAt(index+1);
-                					}
-                					else
-                					{
-                   				 		res = res + st.charAt(i);
-                					}
-            					}
-            					if(ans=="")
-            					{
-                					ans = ans + res;
-            					}
-            					else
-            					{
-               	 					ans = ans + " " + res;
-								}
-								Text2.setText(ans);  
-        }
-						} catch (Exception e1) {
+            					res = res + kiTuDau; 
+            					res = functionCongCu.chuyenDoiGiaiMa(st, index+1, res);
+            					ans = functionCongCu.congChuoi(ans, res);
+								
+                            }
+        					Text2.setText(ans);  
+						} 
+						catch (Exception e1) 
+						{
 							e1.printStackTrace();
 						}
 					}

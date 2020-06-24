@@ -5,6 +5,7 @@ import javax.swing.JLabel;
 import java.awt.Font;
 import java.awt.Image;
 import java.awt.Color;
+import javax.swing.JTextArea;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -45,6 +46,8 @@ public class MENU {
 		JButton EncryptionBtn = new JButton("Ma\u0303 Ho\u0301a");
 		EncryptionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				EncryptionWindow window2 = new EncryptionWindow();
+				window2.showwindow();
 			}
 		});
 		EncryptionBtn.setIcon(null);
@@ -57,6 +60,8 @@ public class MENU {
 		JButton DecryptionBtn = new JButton("Gia\u0309i Ma\u0303");
 		DecryptionBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				DecryptionWindow window3 = new DecryptionWindow();
+				window3.showwindow();
 			}
 		});
 		DecryptionBtn.setForeground(new Color(0, 128, 0));
@@ -75,6 +80,8 @@ public class MENU {
 		JButton AboutUsBtn = new JButton("Nha\u0300 Pha\u0301t Tri\u00EA\u0309n");
 		AboutUsBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				AboutUsWindow window1 = new AboutUsWindow();
+				window1.showwindow();
 			}
 		});
 		AboutUsBtn.setForeground(new Color(0, 128, 0));
