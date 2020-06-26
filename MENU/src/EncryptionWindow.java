@@ -89,16 +89,16 @@ public class EncryptionWindow {
 								JOptionPane.showMessageDialog(null, "Input is empty !");
 								return;
 							}
-							// cat chuoi
-							String[] word = Handling.catChuoi(ques);
+							// cut string
+							String[] word = Handling.cutString(ques);
 							String ans = "";
 							for (String st : word) 
 							{
 								String res = "";
-								// ma hoa
-								res = Handling.chuyenDoiMaHoa(st, res);
-								// them chu da duoc ma hoa
-								ans = Handling.congChuoi(ans, res);
+								// encrytion
+								res = Handling.enCryptionFunction(st, res);
+								// add word was encryted to new string
+								ans = Handling.addString(ans, res);
 							}
 							Text2.setText(ans);
 							
