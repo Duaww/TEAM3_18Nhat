@@ -2,14 +2,15 @@ import javax.swing.JOptionPane;
 
 public class Handling 
 {
-	public static String[] catChuoi(String s)
+	public static String[] cutString(String s)
 	{
 		String[] catChuoi = s.split("\\s");
 		return catChuoi;
 	}
-	public static String chuyenDoiMaHoa(String ip, String res)
+	public static String enCryptionFunction(String ip, String res)
 	{
-		for(int i = 0 ;i<ip.length();i++)
+		int n = ip.length();
+		for(int i = 0 ;i<n;i++)
 		{
 			if(i==0)
 			{
@@ -17,9 +18,9 @@ public class Handling
 			}
 			else if (i==1)
 			{
-				res = res + ip.charAt(ip.length()-1);
+				res = res + ip.charAt(n-1);
 			}
-			else if(i==ip.length()-1)
+			else if(i==n-1)
 			{
 				res = res + ip.charAt(1);
 			}
@@ -30,26 +31,27 @@ public class Handling
 		}
 		return res;
 	}
-	public static String chuyenDoiGiaiMa(String st, int left, String res)
+	public static String deCryptionFunction(String st, int left, String res)
 	{
-		for(int i= left;i<st.length();i++)
+		int n = st.length();
+		for(int i= left;i<n;i++)
 		{
 			if(i==left)
 			{
-				res = res + st.charAt(st.length()-1);
+				res = res + st.charAt(n-1);
 			}
-			else if(i== st.length()-1)
+			else if(i== n-1)
 			{
 				res = res + st.charAt(left);
 			}
 			else
 			{
-			 		res = res + st.charAt(i);
+			 	res = res + st.charAt(i);
 			}
 		}
 		return res;
 	}
-	public static String congChuoi(String ans, String res)
+	public static String addString(String ans, String res)
 	{
 		if(ans=="")
 		{
