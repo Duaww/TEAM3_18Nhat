@@ -95,9 +95,9 @@ public class EncryptionWindow {
 							for (String st : word) 
 							{
 								String res = "";
-								// encrytion
+								// encryption
 								res = Handling.enCryptionFunction(st, res);
-								// add word was encryted to new string
+								// add the word which was encrypted to new string
 								ans = Handling.addString(ans, res);
 							}
 							Text2.setText(ans);
