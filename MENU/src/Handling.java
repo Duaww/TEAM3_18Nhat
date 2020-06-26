@@ -4,8 +4,8 @@ public class Handling
 {
 	public static String[] cutString(String s)
 	{
-		String[] catChuoi = s.split("\\s");
-		return catChuoi;
+		String[] newString = s.split("\\s");
+		return newString;
 	}
 	public static String enCryptionFunction(String ip, String res)
 	{
