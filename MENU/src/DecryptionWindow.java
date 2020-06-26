@@ -89,8 +89,8 @@ public class DecryptionWindow {
 								JOptionPane.showMessageDialog(null, "Input is empty");
 								return;
 							}
-							// cat chuoi
-        					String[] word = Handling.catChuoi(ques);
+							// cut string
+        					String[] word = Handling.cutString(ques);
         					String ans = "";
         					for (String st : word) 
         					{
@@ -119,18 +119,17 @@ public class DecryptionWindow {
             							}
             						}
             					}
-            					// giai ma ky tu dau cua chu
-            					char kiTuDau = Handling.convertToChar(add);
-            					if(kiTuDau == 0)
+            					// decrytion first character
+            					char firstCharacter = Handling.convertToChar(add);
+            					if(firstCharacter == 0)
             					{
             						return;
             					}
-            					res = res + kiTuDau; 
-            					// giai ma cac ky tu con lai
-            					res = Handling.chuyenDoiGiaiMa(st, index+1, res);
-            					// them chu da duoc giai ma vao chuoi moi 
-            					ans = Handling.congChuoi(ans, res);
-								
+            					res = res + firstCharacter; 
+            					// decrytion another character
+            					res = Handling.deCryptionFunction(st, index+1, res);
+            					// add new word to new string 
+            					ans = Handling.addString(ans, res);		
                             }
         					Text2.setText(ans);  
         					
