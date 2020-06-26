@@ -119,16 +119,16 @@ public class DecryptionWindow {
             							}
             						}
             					}
-            					// decrytion first character
+            					// decryption first character
             					char firstCharacter = Handling.convertToChar(add);
             					if(firstCharacter == 0)
             					{
             						return;
             					}
             					res = res + firstCharacter; 
-            					// decrytion another character
+            					// decryption another character
             					res = Handling.deCryptionFunction(st, index+1, res);
-            					// add new word to new string 
+            					// add the word which was decrypted to new string 
             					ans = Handling.addString(ans, res);		
                             }
         					Text2.setText(ans);  
