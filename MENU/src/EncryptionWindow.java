@@ -72,7 +72,8 @@ public class EncryptionWindow {
 				window.getContentPane().add(EncryptedText);
 				
 				JButton EnBtn = new JButton("");
-				EnBtn.setIcon(new ImageIcon("C:\\Users\\Admin\\Pictures\\Change3.png"));
+				ImageIcon image = new ImageIcon ("Change3.png");	
+				EnBtn.setIcon(image);
 				EnBtn.setForeground(new Color(255, 0, 0));
 				EnBtn.setFont(new Font("Cambria", Font.PLAIN, 14));
 				EnBtn.setBounds(310, 118, 77, 44);
