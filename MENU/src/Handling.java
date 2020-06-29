@@ -87,4 +87,38 @@ public class Handling
 			return 0;
 		}
 	}
+	public static boolean checkFirstChar(char check)
+	{
+		if((int)check < 48 || (int)check>57)
+		{
+			JOptionPane.showMessageDialog(null, "Character must be a number");
+			return false;
+		}
+		return true;
+	}
+
+        //char firstCharacter = Handling.convertToChar(add);
+	public static  int index = -1; // Mark locations to swap
+	public static char deCrytionFirstChar(String st)
+	{
+		String add = "";
+		int n = st.length();
+		for(int i=0;i<n;i++)
+		{
+			if((int)st.charAt(i)>=48 && (int)st.charAt(i)<=57)
+	        {
+				// limited of code ascii is 126 to translate
+	        	if(Integer.parseInt(add + st.charAt(i)) > 126)
+	        	{
+	        		break;
+	        	}
+	        	else
+	        	{
+	        		add = add + st.charAt(i);
+	        		index++;
+	        	}
+	        }
+		}
+		return convertToChar(add);
+	}
 }
