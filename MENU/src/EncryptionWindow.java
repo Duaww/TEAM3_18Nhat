@@ -94,19 +94,19 @@ public class EncryptionWindow {
 							}
 							// cut string
 							String[] word = Handling.cutString(ques);
-							String ans = "";
+							String result = "";
 							for (String st : word) 
 							{
-								String res = "";
+								String convert = "";
 								// encryption
-								res = Handling.enCryptionFunction(st, res);
+								convert = Handling.enCryptionFunction(st, convert);
 								// add word was encrypted to new string
-								ans = Handling.addString(ans, res);
+								result = Handling.addString(result, convert);
 							}
-							TextOutput.setText(ans);
+							TextOutput.setText(result);
 							
 							//INSERT INTO DATABASE
-							sqlConnection.INSERTintoDTB(dateFormat.format(currentDate), clockFormat.format(currentDate), "Encryption", Text1.getText(), Text2.getText());
+							//sqlConnection.INSERTintoDTB(dateFormat.format(currentDate), clockFormat.format(currentDate), "Encryption", Text1.getText(), Text2.getText());
 							
 						} catch (Exception e1) {
 							System.out.println("Error!");

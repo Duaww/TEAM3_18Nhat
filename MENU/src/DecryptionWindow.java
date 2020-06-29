@@ -90,7 +90,7 @@ public class DecryptionWindow {
 							}
 							// cut string
 							String[] word = Handling.cutString(ques);
-							String ans = "";
+							String result = "";
 							for (String st : word)
 							{
 								//character must be a number
@@ -98,22 +98,22 @@ public class DecryptionWindow {
 								{
 									return;
 								}
-								String res = "";
+								String convert = "";
 								// decryption first character
 								char firstCharacter = Handling.deCrytionFirstChar(st);
 								if(firstCharacter == 0)
 								{
 									return;
 								}
-								res = res + firstCharacter;
+								convert = convert + firstCharacter;
 								// decryption another character
-								res = Handling.deCryptionFunction(st, Handling.index+1, res);
+								convert = Handling.deCryptionFunction(st, Handling.index+1, convert);
 								// add new word to new string
-								ans = Handling.addString(ans, res);
+								result = Handling.addString(result, convert);
 								// set location = -1 to begin the next word
 								Handling.index = -1;
 							 }
-							TextOutput.setText(ans);
+							TextOutput.setText(result);
 							//INSERT INTO DATABASE
 							//sqlConnection.INSERTintoDTB(dateFormat.format(currentDate), clockFormat.format(currentDate), "Decryption", Text1.getText(), Text2.getText());   
 
