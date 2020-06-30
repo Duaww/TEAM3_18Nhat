@@ -115,7 +115,7 @@ public class DecryptionWindow {
 							 }
 							TextOutput.setText(result);
 							//INSERT INTO DATABASE
-							//sqlConnection.INSERTintoDTB(dateFormat.format(currentDate), clockFormat.format(currentDate), "Decryption", Text1.getText(), Text2.getText());   
+							sqlConnection.INSERTintoDTB(dateFormat.format(currentDate), clockFormat.format(currentDate), "Decryption", Text1.getText(), Text2.getText());   
 
 						} 
 						catch (Exception e1) 
