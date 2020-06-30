@@ -26,8 +26,14 @@ public class AboutUsWindow {
 				Text.setBackground(new Color(240, 248, 255));
 				Text.setFont(new Font("Tahoma", Font.PLAIN, 16));
 				Text.setLineWrap(true);
-				Text.setText("\t\t             ------------------------------------\r\n\t\t\tTh\u00F4ng tin nho\u0301m pha\u0301t tri\u00EA\u0309n \r\n\t\t             ------------------------------------\r\n       T\u00EAn \t\t         L\u01A1\u0301p\t\t  Phu\u0323 tra\u0301ch\t             Li\u00EAn la\u0323c\r\nTr\u00E2\u0300n Vi\u0303nh \u0110a\u0323t\t  18TCLC_Nh\u00E2\u0323t      Giao di\u00EA\u0323n, CSDL         datvinhtran.dut@gmail.com\r\nNguy\u00EA\u0303n Thanh Ti\u0301nh\t  18TCLC_Nh\u00E2\u0323t\t  Gia\u0309i thu\u00E2\u0323t             nguyentinh031220@gmail.com\r\n");
-				Text.setBounds(12, 13, 380, 127);
+				Text.setText("                                             ------------------------------------\r\n" + 
+						"			    Thông tin nhóm phát triển \r\n" + 
+						"                                             ------------------------------------\r\n" + 
+						"       Tên                          Lớp                 Phụ trách	              Liên lạc\r\n" + 
+						"Trần Vĩnh Đạt           18TCLC_Nhật      Giao diện, CSDL         datvinhtran.dut@gmail.com\r\n" + 
+						"Nguyễn Thanh Tính   18TCLC_Nhật          Giải thuật            nguyentinh031220@gmail.com\r\n" + 
+						"");
+				Text.setBounds(12, 13, 659, 137);
 				Text.setEditable(false);
 				Text.setEnabled(true);
 				window.getContentPane().add(Text);

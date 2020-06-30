@@ -7,61 +7,61 @@ public class Handling
 		String[] newString = s.split("\\s");
 		return newString;
 	}
-	public static String enCryptionFunction(String ip, String res)
+	public static String enCryptionFunction(String s, String convert)
 	{
-		int n = ip.length();
+		int n = s.length();
 		for(int i = 0 ;i<n;i++)
 		{
 			if(i==0)
 			{
-				res = res + Integer.toString((int)ip.charAt(i));
+				convert = convert + Integer.toString((int)s.charAt(i));
 			}
 			else if (i==1)
 			{
-				res = res + ip.charAt(n-1);
+				convert = convert + s.charAt(n-1);
 			}
 			else if(i==n-1)
 			{
-				res = res + ip.charAt(1);
+				convert = convert + s.charAt(1);
 			}
 			else
 			{
-				res = res + ip.charAt(i);
+				convert = convert + s.charAt(i);
 			}
 		}
-		return res;
+		return convert;
 	}
-	public static String deCryptionFunction(String st, int left, String res)
+	public static String deCryptionFunction(String s, int left, String convert)
 	{
-		int n = st.length();
+		int n = s.length();
 		for(int i= left;i<n;i++)
 		{
 			if(i==left)
 			{
-				res = res + st.charAt(n-1);
+				convert = convert + s.charAt(n-1);
 			}
 			else if(i== n-1)
 			{
-				res = res + st.charAt(left);
+				convert = convert + s.charAt(left);
 			}
 			else
 			{
-			 	res = res + st.charAt(i);
+			 	convert = convert + s.charAt(i);
 			}
 		}
-		return res;
+		return convert;
 	}
-	public static String addString(String ans, String res)
+	public static String addString(String result, String convert)
 	{
-		if(ans=="")
+		if(result=="")
 		{
-			ans = ans + res;
+			result = result + convert;
 		}
 		else
 		{
-			ans = ans + " " + res;
+			result = result + " " + convert;
 		}  
-		return ans;
+		return result;
 	}
 	public static char convertToChar(String number)
 	{
@@ -86,5 +86,39 @@ public class Handling
 			JOptionPane.showMessageDialog(null, e1.getMessage());
 			return 0;
 		}
+	}
+	public static boolean checkFirstChar(char check)
+	{
+		if((int)check < 48 || (int)check>57)
+		{
+			JOptionPane.showMessageDialog(null, "Character must be a number");
+			return false;
+		}
+		return true;
+	}
+
+        //char firstCharacter = Handling.convertToChar(add);
+	public static  int index = -1; // Mark locations to swap
+	public static char deCrytionFirstChar(String s)
+	{
+		String add = "";
+		int n = s.length();
+		for(int i=0;i<n;i++)
+		{
+			if((int)s.charAt(i) >= 48 && (int)s.charAt(i) <=57)
+			{
+				//limited of code ascii is 126 to convert
+				if(Integer.parseInt(add + s.charAt(i)) > 126)
+				{
+					break;
+				}
+				else
+				{
+					add = add + s.charAt(i);
+					index++;
+				}
+			}
+		}
+		return convertToChar(add);
 	}
 }

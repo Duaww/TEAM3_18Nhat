@@ -41,13 +41,13 @@ public class DecryptionWindow {
 				TextLabel.setBounds(12, 53, 96, 27);
 				window.getContentPane().add(TextLabel);
 				
-				JTextArea Text1 = new JTextArea();
-				Text1.setBackground(new Color(255, 235, 205));
-				Text1.setForeground(new Color(184, 134, 11));
-				Text1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				Text1.setLineWrap(true);
-				Text1.setBounds(12, 80, 286, 170);
-				window.getContentPane().add(Text1);
+				JTextArea TextInput = new JTextArea();
+				TextInput.setBackground(new Color(255, 235, 205));
+				TextInput.setForeground(new Color(184, 134, 11));
+				TextInput.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				TextInput.setLineWrap(true);
+				TextInput.setBounds(12, 80, 286, 170);
+				window.getContentPane().add(TextInput);
 				
 				JLabel lblGiaiMa = new JLabel("GIA\u0309I MA\u0303");
 				lblGiaiMa.setForeground(new Color(255, 0, 0));
@@ -55,14 +55,14 @@ public class DecryptionWindow {
 				lblGiaiMa.setBounds(310, 13, 77, 27);
 				window.getContentPane().add(lblGiaiMa);
 				
-				JTextArea Text2 = new JTextArea();
-				Text2.setEditable(false);
-				Text2.setLineWrap(true);
-				Text2.setForeground(new Color(184, 134, 11));
-				Text2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				Text2.setBackground(new Color(255, 235, 205));
-				Text2.setBounds(399, 80, 286, 170);
-				window.getContentPane().add(Text2);
+				JTextArea TextOutput = new JTextArea();
+				TextOutput.setEditable(false);
+				TextOutput.setLineWrap(true);
+				TextOutput.setForeground(new Color(184, 134, 11));
+				TextOutput.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				TextOutput.setBackground(new Color(255, 235, 205));
+				TextOutput.setBounds(399, 80, 286, 170);
+				window.getContentPane().add(TextOutput);
 				
 				JLabel DecryptedText = new JLabel("Text \u0111a\u0303 gia\u0309i ma\u0303");
 				DecryptedText.setForeground(Color.MAGENTA);
@@ -71,8 +71,7 @@ public class DecryptionWindow {
 				window.getContentPane().add(DecryptedText);
 				
 				JButton EnBtn = new JButton("");
-				ImageIcon image = new ImageIcon ("Change3.png");
-				EnBtn.setIcon(image);
+				EnBtn.setIcon(new ImageIcon("Change3.png"));
 				EnBtn.setForeground(new Color(255, 0, 0));
 				EnBtn.setFont(new Font("Cambria", Font.PLAIN, 14));
 				EnBtn.setBounds(310, 118, 77, 44);
@@ -82,62 +81,46 @@ public class DecryptionWindow {
 					public void actionPerformed(ActionEvent e)
 					{
 						try 
-						{
-							
-							String ques = Text1.getText();
+						{     
+							String ques = TextInput.getText();
 							if(ques.equals("") == true)
 							{
 								JOptionPane.showMessageDialog(null, "Input is empty");
 								return;
 							}
 							// cut string
-        					String[] word = Handling.cutString(ques);
-        					String ans = "";
-        					for (String st : word) 
-        					{
-        						//character must be a number 
-        						if((int)st.charAt(0) < 48 || (int)st.charAt(0)>57)
-        						{
-        							Text2.setText("-cannot decrypt this word : "+st+"\n -Character must be a number");
-        							return;
-        						}
-            					String add = "";
-            					int index = -1;
-            					String res = "";
-            					for(int i=0;i<st.length();i++)
-           						{
-            						if((int)st.charAt(i)>=48 && (int)st.charAt(i)<=57)
-            						{
-            							// limited of code ascii is 126 to translate
-            							if(Integer.parseInt(add + st.charAt(i)) > 126)
-            							{
-            								break;
-            							}
-            							else
-            							{
-            								add = add + st.charAt(i);
-            								index++;
-            							}
-            						}
-            					}
-            					// decryption first character
-            					char firstCharacter = Handling.convertToChar(add);
-            					if(firstCharacter == 0)
-            					{
-            						return;
-            					}
-            					res = res + firstCharacter; 
-            					// decryption another character
-            					res = Handling.deCryptionFunction(st, index+1, res);
-            					// add the word which was decrypted to new string 
-            					ans = Handling.addString(ans, res);		
-                            }
-        					Text2.setText(ans);  
-        					
-        					//INSERT INTO DATABASE
+							String[] word = Handling.cutString(ques);
+							String result = "";
+							for (String st : word)
+							{
+								//character must be a number
+								if(Handling.checkFirstChar(st.charAt(0)) == false)
+								{
+									return;
+								}
+								String convert = "";
+								// decryption first character
+								char firstCharacter = Handling.deCrytionFirstChar(st);
+								if(firstCharacter == 0)
+								{
+									return;
+								}
+								convert = convert + firstCharacter;
+								// decryption another character
+								convert = Handling.deCryptionFunction(st, Handling.index+1, convert);
+								// add new word to new string
+								result = Handling.addString(result, convert);
+								// set location = -1 to begin the next word
+								Handling.index = -1;
+							 }
+							TextOutput.setText(result);
+							//INSERT INTO DATABASE
 							sqlConnection.INSERTintoDTB(dateFormat.format(currentDate), clockFormat.format(currentDate), "Decryption", Text1.getText(), Text2.getText());   
+
+						} 
+						catch (Exception e1) 
+						{
 							
-						} catch (Exception e1) {
 						}
 					}
 				});
@@ -146,8 +129,8 @@ public class DecryptionWindow {
 				JButton ResetBtn = new JButton("Reset");
 				ResetBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Text1.setText("");
-						Text2.setText("");
+						TextInput.setText("");
+						TextOutput.setText("");
 					}
 				});
 				ResetBtn.setBounds(310, 175, 77, 25);

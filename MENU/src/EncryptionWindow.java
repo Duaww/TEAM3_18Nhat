@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
+
+import org.w3c.dom.Text;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -42,13 +45,13 @@ public class EncryptionWindow {
 				TextLabel.setBounds(12, 53, 96, 27);
 				window.getContentPane().add(TextLabel);
 				
-				JTextArea Text1 = new JTextArea();
-				Text1.setBackground(new Color(255, 235, 205));
-				Text1.setForeground(new Color(184, 134, 11));
-				Text1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				Text1.setLineWrap(true);
-				Text1.setBounds(12, 80, 286, 170);
-				window.getContentPane().add(Text1);
+				JTextArea TextInput = new JTextArea();
+				TextInput.setBackground(new Color(255, 235, 205));
+				TextInput.setForeground(new Color(184, 134, 11));
+				TextInput.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				TextInput.setLineWrap(true);
+				TextInput.setBounds(12, 80, 286, 170);
+				window.getContentPane().add(TextInput);
 				
 				JLabel lblMaHoa = new JLabel("MA\u0303 HO\u0301A");
 				lblMaHoa.setForeground(new Color(255, 0, 0));
@@ -56,14 +59,14 @@ public class EncryptionWindow {
 				lblMaHoa.setBounds(310, 13, 77, 27);
 				window.getContentPane().add(lblMaHoa);
 				
-				JTextArea Text2 = new JTextArea();
-				Text2.setEditable(false);
-				Text2.setLineWrap(true);
-				Text2.setForeground(new Color(184, 134, 11));
-				Text2.setFont(new Font("Tahoma", Font.PLAIN, 15));
-				Text2.setBackground(new Color(255, 235, 205));
-				Text2.setBounds(399, 80, 286, 170);
-				window.getContentPane().add(Text2);
+				JTextArea TextOutput = new JTextArea();
+				TextOutput.setEditable(false);
+				TextOutput.setLineWrap(true);
+				TextOutput.setForeground(new Color(184, 134, 11));
+				TextOutput.setFont(new Font("Tahoma", Font.PLAIN, 15));
+				TextOutput.setBackground(new Color(255, 235, 205));
+				TextOutput.setBounds(399, 80, 286, 170);
+				window.getContentPane().add(TextOutput);
 				
 				JLabel EncryptedText = new JLabel("Text \u0111a\u0303 ma\u0303 ho\u0301a");
 				EncryptedText.setForeground(Color.MAGENTA);
@@ -72,8 +75,7 @@ public class EncryptionWindow {
 				window.getContentPane().add(EncryptedText);
 				
 				JButton EnBtn = new JButton("");
-				ImageIcon image = new ImageIcon ("Change3.png");	
-				EnBtn.setIcon(image);
+				EnBtn.setIcon(new ImageIcon("Change3.png"));
 				EnBtn.setForeground(new Color(255, 0, 0));
 				EnBtn.setFont(new Font("Cambria", Font.PLAIN, 14));
 				EnBtn.setBounds(310, 118, 77, 44);
@@ -84,7 +86,7 @@ public class EncryptionWindow {
 					{
 						try 
 						{
-							String ques = Text1.getText();
+							String ques = TextInput.getText();
 							if(ques.equals("") == true)
 							{
 								JOptionPane.showMessageDialog(null, "Input is empty !");
@@ -92,16 +94,16 @@ public class EncryptionWindow {
 							}
 							// cut string
 							String[] word = Handling.cutString(ques);
-							String ans = "";
+							String result = "";
 							for (String st : word) 
 							{
-								String res = "";
+								String convert = "";
 								// encryption
-								res = Handling.enCryptionFunction(st, res);
-								// add the word which was encrypted to new string
-								ans = Handling.addString(ans, res);
+								convert = Handling.enCryptionFunction(st, convert);
+								// add word was encrypted to new string
+								result = Handling.addString(result, convert);
 							}
-							Text2.setText(ans);
+							TextOutput.setText(result);
 							
 							//INSERT INTO DATABASE
 							sqlConnection.INSERTintoDTB(dateFormat.format(currentDate), clockFormat.format(currentDate), "Encryption", Text1.getText(), Text2.getText());
@@ -116,8 +118,8 @@ public class EncryptionWindow {
 				JButton ResetBtn = new JButton("Reset");
 				ResetBtn.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						Text1.setText("");
-						Text2.setText("");
+						TextInput.setText("");
+						TextOutput.setText("");
 					}
 				});
 				ResetBtn.setBounds(310, 175, 77, 25);
